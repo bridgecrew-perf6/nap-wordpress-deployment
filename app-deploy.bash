@@ -24,6 +24,11 @@ gcloud compute ssh ${USER_SPEC} --ssh-key-file=${KEY_FILE} --tunnel-through-iap 
     --quiet --zone=${ZONE} --command="mkdir -p ${REMOTE_DIR}"
 echo "##### end"
 
+echo "##### start"
+gcloud compute ssh ${USER_SPEC} --ssh-key-file=${KEY_FILE} --tunnel-through-iap \
+    --quiet --zone=${ZONE} --command="ls -lrt"
+echo "##### end"
+
 # DO NOT cat any private key here
 #gcloud compute scp --ssh-key-file=${KEY_FILE} --tunnel-through-iap --quiet --zone=${ZONE} app-start.bash ${PATH_SPEC}
 #gcloud compute scp --ssh-key-file=${KEY_FILE} --tunnel-through-iap --quiet --zone=${ZONE} custom-${BRANCH}.cfg ${PATH_SPEC}/custom.cfg
