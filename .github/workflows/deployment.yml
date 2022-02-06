@@ -44,6 +44,10 @@ jobs:
       run: |
         echo "${{ secrets.DEV_GCE_PRIVATE_KEY }}" > gce-dev.key
         echo "${{ secrets.PROD_GCE_PRIVATE_KEY }}" > gce-prod.key
+
+        echo "${{ secrets.DEV_GCE_LOGIN_SA }}" > sa-dev.json
+        echo "${{ secrets.PROD_GCE_LOGIN_SA }}" > sa-prod.json
+
         chmod 400 gce-dev.key gce-prod.key
         chmod +x app-deploy.bash
         ./app-deploy.bash ${{ steps.prep.outputs.branch }}
