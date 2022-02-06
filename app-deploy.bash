@@ -33,8 +33,8 @@ gcloud compute ssh ${USER_SPEC} --tunnel-through-iap --quiet --project=${PROJECT
 echo "##### end"
 
 # DO NOT cat any private key here
-gcloud compute scp --tunnel-through-iap --quiet --zone=${ZONE} app-start.bash ${PATH_SPEC}
-gcloud compute scp --tunnel-through-iap --quiet --zone=${ZONE} custom-${BRANCH}.cfg ${PATH_SPEC}/custom.cfg
-gcloud compute scp --tunnel-through-iap --quiet --zone=${ZONE} docker-compose.yaml ${PATH_SPEC}
+gcloud compute scp --tunnel-through-iap --quiet --project=${PROJECT} --zone=${ZONE} app-start.bash ${PATH_SPEC}
+gcloud compute scp --tunnel-through-iap --quiet --project=${PROJECT} --zone=${ZONE} custom-${BRANCH}.cfg ${PATH_SPEC}/custom.cfg
+gcloud compute scp --tunnel-through-iap --quiet --project=${PROJECT} --zone=${ZONE} docker-compose.yaml ${PATH_SPEC}
 
 gcloud compute ssh ${USER_SPEC} --tunnel-through-iap --quiet --project=${PROJECT} --zone=${ZONE} --command="cd ${REMOTE_DIR}; ./app-start.bash"
