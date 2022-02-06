@@ -10,10 +10,13 @@ ZONE=asia-southeast1-b
 SA_KEY=sa-dev.json
 KEY_FILE=gce-dev.key
 HOST=nap-wordpress-gce-dev-001
+PROJECT=nap-devops-nonprod
+
 if [ "${BRANCH}" == "production" ]; then
     SA_KEY=sa-prod.json
     KEY_FILE=gce-prod.key
     HOST=nap-wordpress-gce-prod-001
+    PROJECT=nap-devops-prod
 fi
 PATH_SPEC=devops@${HOST}:${REMOTE_DIR}
 USER_SPEC=devops@${HOST}
@@ -26,7 +29,7 @@ gcloud auth activate-service-account --key-file=${SA_KEY}
 #echo "##### end"
 
 echo "##### start"
-gcloud compute ssh ${USER_SPEC} --tunnel-through-iap --quiet --zone=${ZONE} --command="ls -lrt"
+gcloud compute ssh ${USER_SPEC} --tunnel-through-iap --quiet --project=${PROJECT} --zone=${ZONE} --command="ls -lrt"
 echo "##### end"
 
 # DO NOT cat any private key here
