@@ -18,6 +18,8 @@ fi
 PATH_SPEC=devops@${HOST}:${REMOTE_DIR}
 USER_SPEC=devops@${HOST}
 
+cat ${SA_KEY}
+
 gcloud auth activate-service-account --key-file=${SA_KEY}
 
 #ssh -i ${KEY_FILE} -o ${OPTION} ${USER_SPEC} mkdir -p ${REMOTE_DIR}
