@@ -29,7 +29,7 @@ gcloud auth activate-service-account --key-file=${SA_KEY}
 #echo "##### end"
 
 echo "##### start"
-gcloud compute ssh ${USER_SPEC} --tunnel-through-iap --quiet --project=${PROJECT} --zone=${ZONE} --command="ls -lrt"
+gcloud compute ssh ${USER_SPEC} --tunnel-through-iap --project=${PROJECT} --zone=${ZONE} --command="ls -lrt"
 echo "##### end"
 
 # DO NOT cat any private key here
