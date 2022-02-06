@@ -29,13 +29,12 @@ gcloud auth activate-service-account --key-file=${SA_KEY}
 #echo "##### end"
 
 echo "##### start"
-gcloud compute ssh ${USER_SPEC} --tunnel-through-iap --quiet --project=${PROJECT} --zone=${ZONE} --command="ls -lrt"
+gcloud compute ssh ${USER_SPEC} --tunnel-through-iap --quiet --project=${PROJECT} --zone=${ZONE} --command="mkdir -p ${REMOTE_DIR}"
 echo "##### end"
 
 # DO NOT cat any private key here
-#gcloud compute scp --ssh-key-file=${KEY_FILE} --tunnel-through-iap --quiet --zone=${ZONE} app-start.bash ${PATH_SPEC}
-#gcloud compute scp --ssh-key-file=${KEY_FILE} --tunnel-through-iap --quiet --zone=${ZONE} custom-${BRANCH}.cfg ${PATH_SPEC}/custom.cfg
-#gcloud compute scp --ssh-key-file=${KEY_FILE} --tunnel-through-iap --quiet --zone=${ZONE} docker-compose.yaml ${PATH_SPEC}
+gcloud compute scp --tunnel-through-iap --quiet --zone=${ZONE} app-start.bash ${PATH_SPEC}
+gcloud compute scp --tunnel-through-iap --quiet --zone=${ZONE} custom-${BRANCH}.cfg ${PATH_SPEC}/custom.cfg
+gcloud compute scp --tunnel-through-iap --quiet --zone=${ZONE} docker-compose.yaml ${PATH_SPEC}
 
-#gcloud compute ssh ${USER_SPEC} --ssh-key-file=${KEY_FILE} --tunnel-through-iap \
-#    --quiet --zone=${ZONE} --command="cd ${REMOTE_DIR}; ./app-start.bash"
+gcloud compute ssh ${USER_SPEC} --tunnel-through-iap --quiet --project=${PROJECT} --zone=${ZONE} --command="cd ${REMOTE_DIR}; ./app-start.bash"
