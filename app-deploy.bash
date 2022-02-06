@@ -18,11 +18,8 @@ fi
 PATH_SPEC=devops@${HOST}:${REMOTE_DIR}
 USER_SPEC=devops@${HOST}
 
-cat ${SA_KEY}
-
 gcloud auth activate-service-account --key-file=${SA_KEY}
 
-#ssh -i ${KEY_FILE} -o ${OPTION} ${USER_SPEC} mkdir -p ${REMOTE_DIR}
 gcloud compute ssh ${USER_SPEC} --ssh-key-file=${KEY_FILE} --tunnel-through-iap \
     --quiet --zone=${ZONE} --command="mkdir -p ${REMOTE_DIR}"
 
@@ -31,6 +28,5 @@ gcloud compute scp --ssh-key-file=${KEY_FILE} --tunnel-through-iap --quiet --zon
 gcloud compute scp --ssh-key-file=${KEY_FILE} --tunnel-through-iap --quiet --zone=${ZONE} custom-${BRANCH}.cfg ${PATH_SPEC}/custom.cfg
 gcloud compute scp --ssh-key-file=${KEY_FILE} --tunnel-through-iap --quiet --zone=${ZONE} docker-compose.yaml ${PATH_SPEC}
 
-#ssh -i ${KEY_FILE} -o ${OPTION} ${USER_SPEC} "cd ${REMOTE_DIR}; ./app-start.bash"
 gcloud compute ssh ${USER_SPEC} --ssh-key-file=${KEY_FILE} --tunnel-through-iap \
     --quiet --zone=${ZONE} --command="cd ${REMOTE_DIR}; ./app-start.bash"
