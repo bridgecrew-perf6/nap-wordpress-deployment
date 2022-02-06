@@ -37,4 +37,5 @@ gcloud compute scp --tunnel-through-iap --quiet --project=${PROJECT} --zone=${ZO
 gcloud compute scp --tunnel-through-iap --quiet --project=${PROJECT} --zone=${ZONE} custom-${BRANCH}.cfg ${PATH_SPEC}/custom.cfg
 gcloud compute scp --tunnel-through-iap --quiet --project=${PROJECT} --zone=${ZONE} docker-compose.yaml ${PATH_SPEC}
 
-gcloud compute ssh ${USER_SPEC} --tunnel-through-iap --quiet --project=${PROJECT} --zone=${ZONE} --command="cd ${REMOTE_DIR}; ./app-start.bash"
+gcloud compute ssh ${USER_SPEC} --tunnel-through-iap --quiet --project=${PROJECT} --zone=${ZONE} \
+    --command="cd ${REMOTE_DIR}; chmod +x app-start.bash; ./app-start.bash"
