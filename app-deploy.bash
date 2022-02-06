@@ -7,14 +7,18 @@ REMOTE_DIR=/home/devops/wordpress
 OPTION=StrictHostKeyChecking=no
 ZONE=asia-southeast1-b
 
+SA_KEY=sa-dev.json
 KEY_FILE=gce-dev.key
 HOST=nap-wordpress-gce-dev-001
 if [ "${BRANCH}" == "production" ]; then
+    SA_KEY=sa-prod.json
     KEY_FILE=gce-prod.key
     HOST=nap-wordpress-gce-prod-001
 fi
 PATH_SPEC=devops@${HOST}:${REMOTE_DIR}
 USER_SPEC=devops@${HOST}
+
+gcloud auth activate-service-account --key-file=${SA_KEY}
 
 #ssh -i ${KEY_FILE} -o ${OPTION} ${USER_SPEC} mkdir -p ${REMOTE_DIR}
 gcloud compute ssh ${USER_SPEC} --ssh-key-file=${KEY_FILE} --tunnel-through-iap \
