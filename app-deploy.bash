@@ -23,11 +23,6 @@ USER_SPEC=devops@${HOST}
 
 gcloud auth activate-service-account --key-file=${SA_KEY}
 
-#echo "##### start"
-#gcloud compute ssh ${USER_SPEC} --ssh-key-file=${KEY_FILE} --tunnel-through-iap \
-#    --quiet --zone=${ZONE} --command="mkdir -p ${REMOTE_DIR}"
-#echo "##### end"
-
 echo "##### start"
 gcloud compute ssh ${USER_SPEC} --tunnel-through-iap --quiet --project=${PROJECT} --zone=${ZONE} --command="mkdir -p ${REMOTE_DIR}"
 echo "##### end"
