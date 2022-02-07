@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#TODO : Added mechanism to auto start "docker-compose up" if VM is restarted
+
 ENV_FILE=.env
 
 mkdir -p ${HOME}/wordpress/data/postgres
