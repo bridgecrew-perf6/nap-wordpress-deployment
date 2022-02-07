@@ -1,36 +1,12 @@
 version: '3.8'
 services:
-  onix-api:
-    image: gcr.io/its-artifact-commons/acd-onix-api:${IMAGE_TAG}
-    container_name: onix-api
-    restart: always
-    environment:
-      # IMPORTANT - need to use directory under /wis 
-      ONIX_SESSION_DIR: '/wis/session'
-      ONIX_WIP_DIR: '/wis/wip'
-      ONIX_LOCK_DIR: '/wis/lock'
-      ONIX_STORAGE_DIR: '/wis/storage'
-      ONIX_STAGE: ${STAGE}
-      ONIX_SYM_KEY: ${ONIX_SYM_KEY}
-      ONIX_DSN: "PDO:Pg:dbname=onix;host=database;port=5432"
-      ONIX_DB_USERNAME: ${ONIX_DB_USERNAME}
-      ONIX_DB_PASSWORD: ${ONIX_DB_PASSWORD}
-    ports:
-      - '80:80'
-    expose:
-      - '80'
-    volumes:
-      - ${DATA_DIR}/onix-api/session:/wis/session
-      - ${DATA_DIR}/onix-api/wip:/wis/wip
-      - ${DATA_DIR}/onix-api/lock:/wis/lock
-      - ${DATA_DIR}/onix-api/storage:/wis/storage
 
   database:
     image: postgres:14.1
     container_name: database
     environment:
-      POSTGRES_USER: ${ONIX_DB_USERNAME}
-      POSTGRES_PASSWORD: ${ONIX_DB_PASSWORD}
-      POSTGRES_DB: onix
+      POSTGRES_USER: ${WORDPRESS_DB_USERNAME}
+      POSTGRES_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      POSTGRES_DB: wordpress
     volumes:
       - ${DATA_DIR}/postgres:/var/lib/postgresql/data/
