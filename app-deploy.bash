@@ -3,7 +3,6 @@
 # $1 is branch name
 
 BRANCH=$1
-REMOTE_DIR=/home/devops/wordpress
 OPTION=StrictHostKeyChecking=no
 ZONE=asia-southeast1-b
 
@@ -11,6 +10,9 @@ SA_KEY=sa-dev.json
 KEY_FILE=gce-dev.key
 HOST=nap-wordpress-gce-dev-001
 PROJECT=nap-devops-nonprod
+
+source "custom-${BRANCH}.cfg"
+REMOTE_DIR=/home/devops/wordpress-${STAGE}
 
 if [ "${BRANCH}" == "production" ]; then
     SA_KEY=sa-prod.json
