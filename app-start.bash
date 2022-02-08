@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#TODO : Added mechanism to auto start "docker-compose up" if VM is restarted
-
 ENV_FILE=.env
 
 source "custom.cfg" #This file is copied and renamed by github action job
