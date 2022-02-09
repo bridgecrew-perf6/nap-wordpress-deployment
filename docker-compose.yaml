@@ -23,6 +23,7 @@ services:
 
   wpcli:
     image: wordpress:cli
+    command: sh -c "wp plugin install googleappslogin --activate"
     restart: always
     volumes:
       - ${DATA_DIR}/wp/config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
