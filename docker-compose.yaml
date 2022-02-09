@@ -23,6 +23,7 @@ services:
 
   wpcli:
     image: wordpress:cli
+    restart: always
     command: sh -c "wp plugin install miniorange-openid-connect --activate"
     volumes:
       - ${DATA_DIR}/wp/config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
