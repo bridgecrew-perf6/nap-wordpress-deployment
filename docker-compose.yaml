@@ -43,7 +43,7 @@ services:
     environment:
       # https://docs.phpmyadmin.net/en/latest/setup.html#docker-environment-variables
       PMA_HOST: db
-      PMA_PORT: ${DB_PORT}
+      PMA_PORT: 3306 #Use container port
       MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
     ports:
       - ${IP}:${PMA_PORT}:80
